@@ -7,21 +7,23 @@ export function useSectionObserver() {
   const markVisited = useStore((s) => s.markVisited)
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            const id = entry.target.id as SectionId
-            setActiveSection(id)
-            markVisited(id)
-          }
-        })
-      },
-      { threshold: 0.4 }
-    )
+    function update() {
+      const els = Array.from(document.querySelectorAll<HTMLElement>('[data-section]'))
+      const trigger = window.innerHeight * 0.4
+      let active: SectionId | null = null
+      for (const el of els) {
+        if (el.getBoundingClientRect().top <= trigger) {
+          active = el.id as SectionId
+        }
+      }
+      if (active) {
+        setActiveSection(active)
+        markVisited(active)
+      }
+    }
 
-    const sections = document.querySelectorAll('[data-section]')
-    sections.forEach((el) => observer.observe(el))
-    return () => observer.disconnect()
+    update()
+    window.addEventListener('scroll', update, { passive: true })
+    return () => window.removeEventListener('scroll', update)
   }, [setActiveSection, markVisited])
 }
