@@ -5,9 +5,11 @@ interface NavigationSlice {
   activeSection: SectionId
   isNavOpen: boolean
   visitedSections: SectionId[]
+  theme: 'dark' | 'light'
   setActiveSection: (id: SectionId) => void
   setNavOpen: (open: boolean) => void
   markVisited: (id: SectionId) => void
+  toggleTheme: () => void
 }
 
 interface VideoSlice {
@@ -41,6 +43,7 @@ export const useStore = create<Store>((set) => ({
   activeSection: 'hero',
   isNavOpen: false,
   visitedSections: [],
+  theme: 'dark',
   setActiveSection: (id) => set({ activeSection: id }),
   setNavOpen: (open) => set({ isNavOpen: open }),
   markVisited: (id) =>
@@ -49,6 +52,7 @@ export const useStore = create<Store>((set) => ({
         ? s.visitedSections
         : [...s.visitedSections, id],
     })),
+  toggleTheme: () => set((s) => ({ theme: s.theme === 'dark' ? 'light' : 'dark' })),
 
   // Video
   isMuted: true,

@@ -1,4 +1,5 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import { useStore } from './store'
 import { LenisProvider } from './components/layout/LenisProvider'
 import { DeckShell } from './components/layout/DeckShell'
 import { NavOverlay } from './components/navigation/NavOverlay'
@@ -13,6 +14,7 @@ import { EventsSection } from './sections/Events'
 import { ContactSection } from './sections/Contact'
 import { useSectionObserver } from './hooks/useSectionObserver'
 import { IntroScreen } from './components/IntroScreen'
+import { ChatWidget } from './components/ChatWidget'
 
 function Deck() {
   useSectionObserver()
@@ -33,6 +35,11 @@ function Deck() {
 
 export default function App() {
   const [entered, setEntered] = useState(false)
+  const theme = useStore((s) => s.theme)
+
+  useEffect(() => {
+    document.documentElement.dataset.theme = theme
+  }, [theme])
 
   return (
     <>
@@ -43,6 +50,7 @@ export default function App() {
           <NavOverlay />
           <ModuleRenderer />
           <Deck />
+          <ChatWidget />
         </LenisProvider>
       )}
     </>

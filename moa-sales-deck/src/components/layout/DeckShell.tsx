@@ -8,6 +8,8 @@ export function DeckShell() {
   const isMuted = useStore((s) => s.isMuted)
   const setMuted = useStore((s) => s.setMuted)
   const activeSection = useStore((s) => s.activeSection)
+  const theme = useStore((s) => s.theme)
+  const toggleTheme = useStore((s) => s.toggleTheme)
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
@@ -17,17 +19,15 @@ export function DeckShell() {
 
   return (
     <>
-      {/* Scroll progress line — sits above the navbar */}
       <ScrollProgress />
 
-      {/* Top navigation bar */}
       <header
         className="fixed top-0 left-0 right-0 z-[30]"
         style={{
-          background: 'rgba(10, 14, 26, 0.82)',
+          background: 'var(--nav-bg)',
           backdropFilter: 'blur(12px)',
           WebkitBackdropFilter: 'blur(12px)',
-          borderBottom: '1px solid rgba(201, 168, 76, 0.18)',
+          borderBottom: '1px solid var(--nav-border)',
         }}
       >
         <div
@@ -79,7 +79,7 @@ export function DeckShell() {
                   fontSize: '10px',
                   letterSpacing: '0.2em',
                   textTransform: 'uppercase',
-                  color: activeSection === s.id ? '#C9A84C' : 'rgba(248,246,242,0.55)',
+                  color: activeSection === s.id ? '#C9A84C' : `rgba(var(--text-rgb),0.55)`,
                   background: 'none',
                   border: 'none',
                   cursor: 'pointer',
@@ -88,10 +88,10 @@ export function DeckShell() {
                   transition: 'color 0.2s, border-color 0.2s',
                 }}
                 onMouseEnter={(e) => {
-                  if (activeSection !== s.id) (e.currentTarget as HTMLButtonElement).style.color = '#F8F6F2'
+                  if (activeSection !== s.id) (e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)'
                 }}
                 onMouseLeave={(e) => {
-                  if (activeSection !== s.id) (e.currentTarget as HTMLButtonElement).style.color = 'rgba(248,246,242,0.55)'
+                  if (activeSection !== s.id) (e.currentTarget as HTMLButtonElement).style.color = `rgba(var(--text-rgb),0.55)`
                 }}
               >
                 {s.label}
@@ -101,6 +101,28 @@ export function DeckShell() {
 
           {/* Right controls */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
+            {/* Theme toggle */}
+            <button
+              onClick={toggleTheme}
+              title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
+              style={{
+                fontFamily: 'Inter, sans-serif',
+                fontSize: '9px',
+                letterSpacing: '0.2em',
+                textTransform: 'uppercase',
+                color: `rgba(var(--text-rgb),0.45)`,
+                background: 'none',
+                border: 'none',
+                cursor: 'pointer',
+                transition: 'color 0.2s',
+              }}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = `rgba(var(--text-rgb),0.45)`)}
+              className="hidden md:block"
+            >
+              {theme === 'dark' ? '○ Light' : '● Dark'}
+            </button>
+
             {/* Sound toggle */}
             <button
               onClick={() => setMuted(!isMuted)}
@@ -109,14 +131,14 @@ export function DeckShell() {
                 fontSize: '9px',
                 letterSpacing: '0.2em',
                 textTransform: 'uppercase',
-                color: 'rgba(248,246,242,0.45)',
+                color: `rgba(var(--text-rgb),0.45)`,
                 background: 'none',
                 border: 'none',
                 cursor: 'pointer',
                 transition: 'color 0.2s',
               }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = 'rgba(248,246,242,0.9)')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = 'rgba(248,246,242,0.45)')}
+              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)')}
+              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = `rgba(var(--text-rgb),0.45)`)}
               className="hidden md:block"
             >
               {isMuted ? '○ Sound Off' : '● Sound On'}
