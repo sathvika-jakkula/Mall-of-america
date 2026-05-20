@@ -91,3 +91,21 @@ html.lenis, html.lenis body {
 .clip-visible {
   clip-path: inset(0 0% 0 0);
 }
+
+/* Intro screen enter button */
+.intro-enter-btn::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: #C9A84C;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.35s ease;
+  z-index: 0;
+}
+.intro-enter-btn:hover::before {
+  transform: scaleX(1);
+}
+.intro-enter-btn:hover {
+  color: #0A0E1A;
+}

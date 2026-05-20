@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { LenisProvider } from './components/layout/LenisProvider'
 import { DeckShell } from './components/layout/DeckShell'
 import { NavOverlay } from './components/navigation/NavOverlay'
@@ -11,6 +12,7 @@ import { AttractionsSection } from './sections/Attractions'
 import { EventsSection } from './sections/Events'
 import { ContactSection } from './sections/Contact'
 import { useSectionObserver } from './hooks/useSectionObserver'
+import { IntroScreen } from './components/IntroScreen'
 
 function Deck() {
   useSectionObserver()
@@ -30,12 +32,19 @@ function Deck() {
 }
 
 export default function App() {
+  const [entered, setEntered] = useState(false)
+
   return (
-    <LenisProvider>
-      <DeckShell />
-      <NavOverlay />
-      <ModuleRenderer />
-      <Deck />
-    </LenisProvider>
+    <>
+      {!entered && <IntroScreen onEnter={() => setEntered(true)} />}
+      {entered && (
+        <LenisProvider>
+          <DeckShell />
+          <NavOverlay />
+          <ModuleRenderer />
+          <Deck />
+        </LenisProvider>
+      )}
+    </>
   )
 }
