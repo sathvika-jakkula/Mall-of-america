@@ -1,0 +1,1 @@
+export { AttractionsSection } from './AttractionsSection'

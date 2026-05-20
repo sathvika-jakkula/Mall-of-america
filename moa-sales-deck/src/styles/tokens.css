@@ -1,0 +1,32 @@
+@theme {
+  /* Brand Colors */
+  --color-moa-navy: #0A0E1A;
+  --color-moa-navy-light: #111827;
+  --color-moa-gold: #C9A84C;
+  --color-moa-gold-light: #E4C97A;
+  --color-moa-cream: #F8F6F2;
+  --color-moa-white: #FFFFFF;
+  --color-moa-gray: #6B7280;
+  --color-moa-gray-light: #9CA3AF;
+  --color-moa-overlay: rgba(10, 14, 26, 0.72);
+
+  /* Typography */
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+
+  /* Spacing */
+  --section-px: clamp(1.5rem, 5vw, 6rem);
+  --section-py: clamp(4rem, 8vh, 8rem);
+
+  /* Animation durations */
+  --duration-fast: 200ms;
+  --duration-base: 400ms;
+  --duration-slow: 700ms;
+  --duration-cinematic: 1200ms;
+
+  /* Z-index layers */
+  --z-deck: 10;
+  --z-shell: 30;
+  --z-module: 40;
+  --z-nav: 50;
+}

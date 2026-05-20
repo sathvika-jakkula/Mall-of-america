@@ -1,0 +1,93 @@
+@import "tailwindcss";
+@import "./tokens.css";
+
+/* Expose font vars globally so var(--font-display) works everywhere */
+:root {
+  --font-display: "Playfair Display", Georgia, serif;
+  --font-sans: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: auto;
+  background-color: #0A0E1A;
+  color: #F8F6F2;
+  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overscroll-behavior: none;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+/* Headings use display font by default */
+h1, h2, h3, h4 {
+  font-family: "Playfair Display", Georgia, serif;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+/* Lenis smooth scroll */
+html.lenis, html.lenis body {
+  height: auto;
+}
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+.lenis.lenis-stopped {
+  overflow: hidden;
+}
+
+/* Selection */
+::selection {
+  background: #C9A84C;
+  color: #0A0E1A;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: #0A0E1A;
+}
+::-webkit-scrollbar-thumb {
+  background: #C9A84C;
+  border-radius: 2px;
+}
+
+/* Section base — NO overflow:hidden to avoid clipping display text */
+.section {
+  position: relative;
+  padding: clamp(4rem, 8vh, 8rem) clamp(1.5rem, 5vw, 6rem);
+}
+
+/* Video fills container */
+.video-fill {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  pointer-events: none;
+}
+
+/* Clip reveal animation */
+.clip-hidden {
+  clip-path: inset(0 100% 0 0);
+}
+.clip-visible {
+  clip-path: inset(0 0% 0 0);
+}

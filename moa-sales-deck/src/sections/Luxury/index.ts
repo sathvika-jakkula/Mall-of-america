@@ -1,0 +1,1 @@
+export { LuxurySection } from './LuxurySection'
