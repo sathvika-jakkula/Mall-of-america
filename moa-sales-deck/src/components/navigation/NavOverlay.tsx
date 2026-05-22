@@ -48,8 +48,8 @@ export function NavOverlay() {
   }
 
   const openModule = (id: ModuleId) => {
-    setNavOpen(false)
-    setTimeout(() => setActiveModule(id), 300)
+    setActiveModule(id)   // mount behind overlay immediately
+    setNavOpen(false)     // overlay fades out to reveal it
   }
 
   return (

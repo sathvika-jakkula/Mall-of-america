@@ -93,7 +93,7 @@ export function ModuleShell({ children, title, subtitle, heroImage, id: _id }: P
       )}
 
       {/* Content */}
-      <div ref={containerRef} style={{ opacity: heroImage ? 1 : 0 }}>
+      <div ref={containerRef} style={{ opacity: 0 }}>
         {!heroImage && (
           <div style={{ padding: '60px 2rem 0', textAlign: 'center' }}>
             <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', color: '#C9A84C', letterSpacing: '0.35em', textTransform: 'uppercase', marginBottom: '12px' }}>Deep Dive</p>

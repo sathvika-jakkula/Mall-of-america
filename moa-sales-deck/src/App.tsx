@@ -1,6 +1,6 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import { useStore } from './store'
-import { LenisProvider } from './components/layout/LenisProvider'
+import { LenisProvider, LenisContext } from './components/layout/LenisProvider'
 import { DeckShell } from './components/layout/DeckShell'
 import { NavOverlay } from './components/navigation/NavOverlay'
 import { ModuleRenderer } from './components/layout/ModuleRenderer'
@@ -15,6 +15,20 @@ import { ContactSection } from './sections/Contact'
 import { useSectionObserver } from './hooks/useSectionObserver'
 import { IntroScreen } from './components/IntroScreen'
 import { ChatWidget } from './components/ChatWidget'
+
+function ScrollLocker({ locked }: { locked: boolean }) {
+  const lenis = useContext(LenisContext)
+  useEffect(() => {
+    if (!lenis) return
+    if (locked) {
+      lenis.stop()
+    } else {
+      lenis.scrollTo(0, { immediate: true })
+      lenis.start()
+    }
+  }, [locked, lenis])
+  return null
+}
 
 function Deck() {
   useSectionObserver()
@@ -50,6 +64,7 @@ export default function App() {
     <>
       {/* Main app always rendered so it's ready when intro fades out */}
       <LenisProvider>
+        <ScrollLocker locked={!introGone} />
         <DeckShell />
         <NavOverlay />
         <ModuleRenderer />
