@@ -41,6 +41,11 @@ export default function App() {
     document.documentElement.dataset.theme = theme
   }, [theme])
 
+  useEffect(() => {
+    document.body.style.overflow = introGone ? '' : 'hidden'
+    return () => { document.body.style.overflow = '' }
+  }, [introGone])
+
   return (
     <>
       {/* Main app always rendered so it's ready when intro fades out */}
