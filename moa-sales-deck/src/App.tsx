@@ -34,7 +34,7 @@ function Deck() {
 }
 
 export default function App() {
-  const [entered, setEntered] = useState(false)
+  const [introGone, setIntroGone] = useState(false)
   const theme = useStore((s) => s.theme)
 
   useEffect(() => {
@@ -43,16 +43,17 @@ export default function App() {
 
   return (
     <>
-      {!entered && <IntroScreen onEnter={() => setEntered(true)} />}
-      {entered && (
-        <LenisProvider>
-          <DeckShell />
-          <NavOverlay />
-          <ModuleRenderer />
-          <Deck />
-          <ChatWidget />
-        </LenisProvider>
-      )}
+      {/* Main app always rendered so it's ready when intro fades out */}
+      <LenisProvider>
+        <DeckShell />
+        <NavOverlay />
+        <ModuleRenderer />
+        <Deck />
+        <ChatWidget />
+      </LenisProvider>
+
+      {/* Intro overlays on top; unmounts after fade completes */}
+      {!introGone && <IntroScreen onEnter={() => setIntroGone(true)} />}
     </>
   )
 }
