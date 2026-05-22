@@ -101,54 +101,8 @@ export function DeckShell() {
 
           {/* Right controls */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.25rem' }}>
-            {/* Theme toggle */}
-            <button
-              onClick={toggleTheme}
-              title={theme === 'dark' ? 'Switch to light theme' : 'Switch to dark theme'}
-              style={{
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '9px',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: `rgba(var(--text-rgb),0.45)`,
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = `rgba(var(--text-rgb),0.45)`)}
-              className="hidden md:block"
-            >
-              {theme === 'dark' ? '○ Light' : '● Dark'}
-            </button>
 
-            {/* Sound toggle */}
-            <button
-              onClick={() => setMuted(!isMuted)}
-              style={{
-                fontFamily: 'Inter, sans-serif',
-                fontSize: '9px',
-                letterSpacing: '0.2em',
-                textTransform: 'uppercase',
-                color: `rgba(var(--text-rgb),0.45)`,
-                background: 'none',
-                border: 'none',
-                cursor: 'pointer',
-                transition: 'color 0.2s',
-              }}
-              onMouseEnter={(e) => ((e.currentTarget as HTMLButtonElement).style.color = 'var(--text-primary)')}
-              onMouseLeave={(e) => ((e.currentTarget as HTMLButtonElement).style.color = `rgba(var(--text-rgb),0.45)`)}
-              className="hidden md:block"
-            >
-              {isMuted ? '○ Sound Off' : '● Sound On'}
-            </button>
 
-            {/* Gold separator */}
-            <span
-              className="hidden md:block"
-              style={{ width: '1px', height: '16px', background: 'rgba(201,168,76,0.25)' }}
-            />
 
             {/* Hamburger */}
             <NavTrigger />
