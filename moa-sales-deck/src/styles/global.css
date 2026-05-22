@@ -100,12 +100,13 @@ html.lenis, html.lenis body {
   background: #C9A84C;
   transform: scaleX(0);
   transform-origin: left;
-  transition: transform 0.35s ease;
+  transition: transform 0.4s ease;
   z-index: 0;
 }
 .intro-enter-btn:hover::before {
   transform: scaleX(1);
 }
 .intro-enter-btn:hover {
-  color: #0A0E1A;
+  color: #0A0E1A !important;
+  box-shadow: 0 0 36px rgba(201,168,76,0.55) !important;
 }

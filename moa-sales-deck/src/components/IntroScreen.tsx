@@ -47,18 +47,64 @@ export function IntroScreen({ onEnter }: Props) {
       <div className="absolute inset-0 bg-[rgba(10,14,26,0.45)]" />
 
       {/* Enter button */}
-      <button
-        onClick={handleEnter}
-        className="intro-enter-btn relative z-10 cursor-pointer px-12 py-4 text-sm uppercase font-sans text-[#C9A84C] border border-[#C9A84C] overflow-hidden"
+      <div
         style={{
           opacity: buttonVisible ? 1 : 0,
-          transform: buttonVisible ? "translateY(0)" : "translateY(16px)",
-          transition: "opacity 0.8s ease, transform 0.8s ease",
-          letterSpacing: "0.25em",
+          transform: buttonVisible ? 'translateY(0)' : 'translateY(20px)',
+          transition: 'opacity 0.8s ease, transform 0.8s ease',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          gap: '16px',
+          position: 'relative',
+          zIndex: 10,
         }}
       >
-        <span className="relative z-10">Enter</span>
-      </button>
+        {/* Label above button */}
+        <p style={{
+          fontFamily: '"Playfair Display", Georgia, serif',
+          fontSize: '13px',
+          color: 'rgba(248,246,242,0.6)',
+          letterSpacing: '0.3em',
+          textTransform: 'uppercase',
+        }}>
+          Mall of America
+        </p>
+
+        <button
+          onClick={handleEnter}
+          className="intro-enter-btn"
+          style={{
+            position: 'relative',
+            overflow: 'hidden',
+            cursor: 'pointer',
+            padding: '18px 64px',
+            fontSize: '13px',
+            fontFamily: 'Inter, sans-serif',
+            fontWeight: 600,
+            letterSpacing: '0.35em',
+            textTransform: 'uppercase',
+            color: '#C9A84C',
+            background: 'rgba(10,14,26,0.55)',
+            border: '1.5px solid #C9A84C',
+            boxShadow: '0 0 24px rgba(201,168,76,0.35), inset 0 0 16px rgba(201,168,76,0.06)',
+          }}
+        >
+          <span style={{ position: 'relative', zIndex: 1 }}>Enter</span>
+        </button>
+
+        {/* Scroll hint */}
+        <p style={{
+          fontFamily: 'Inter, sans-serif',
+          fontSize: '10px',
+          color: 'rgba(248,246,242,0.35)',
+          letterSpacing: '0.2em',
+          textTransform: 'uppercase',
+          marginTop: '4px',
+        }}>
+          Click to explore
+        </p>
+      </div>
     </div>
   );
 }

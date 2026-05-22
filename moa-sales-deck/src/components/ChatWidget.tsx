@@ -30,14 +30,43 @@ const C = {
   suggBorder: 'rgba(201,168,76,0.25)',
 }
 
+const CYCLING_QUESTIONS = [
+  'What attractions are here?',
+  'How many visitors per year?',
+  'Tell me about leasing...',
+  'What events can be hosted?',
+  'Any luxury brands at MOA?',
+]
+
 export function ChatWidget() {
   const [open, setOpen] = useState(false)
   const [messages, setMessages] = useState<Message[]>([])
   const [input, setInput] = useState('')
   const [loading, setLoading] = useState(false)
   const [streamingText, setStreamingText] = useState('')
+  const [typedText, setTypedText] = useState('')
+  const [qIndex, setQIndex] = useState(0)
   const bottomRef = useRef<HTMLDivElement>(null)
   const inputRef = useRef<HTMLTextAreaElement>(null)
+
+  // Typewriter cycling effect for the label
+  useEffect(() => {
+    if (open) return
+    const question = CYCLING_QUESTIONS[qIndex]
+    let i = 0
+    setTypedText('')
+    const typeTimer = setInterval(() => {
+      i++
+      setTypedText(question.slice(0, i))
+      if (i >= question.length) {
+        clearInterval(typeTimer)
+        setTimeout(() => {
+          setQIndex((prev) => (prev + 1) % CYCLING_QUESTIONS.length)
+        }, 1800)
+      }
+    }, 45)
+    return () => clearInterval(typeTimer)
+  }, [qIndex, open])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
@@ -148,23 +177,37 @@ export function ChatWidget() {
           )}
         </button>
 
-        {/* Label pill — only when closed */}
+        {/* Animated label pill — only when closed */}
         {!open && (
           <div
+            onClick={() => setOpen(true)}
             style={{
               background: C.panelBg,
               border: `1px solid ${C.border}`,
               padding: '11px 18px',
-              boxShadow: '0 4px 16px rgba(0,0,0,0.12)',
+              boxShadow: '0 4px 20px rgba(201,168,76,0.15)',
               cursor: 'pointer',
+              animation: 'pillPulse 3s ease-in-out infinite',
+              minWidth: '200px',
             }}
-            onClick={() => setOpen(true)}
           >
-            <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '15px', fontWeight: 600, color: '#C9A84C', letterSpacing: '0.08em', whiteSpace: 'nowrap' }}>
-              Ask about MOA
-            </p>
-            <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', fontWeight: 500, color: C.textMuted, letterSpacing: '0.08em', textTransform: 'uppercase', marginTop: '3px' }}>
-              AI Assistant · Always On
+            {/* Static header row */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: '7px', marginBottom: '5px' }}>
+              <span style={{
+                width: '6px', height: '6px', borderRadius: '50%',
+                background: '#C9A84C',
+                animation: 'dotBlink 1.4s ease-in-out infinite',
+                flexShrink: 0,
+              }} />
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', fontWeight: 600, color: C.textMuted, letterSpacing: '0.18em', textTransform: 'uppercase' }}>
+                MOA AI Assistant
+              </p>
+            </div>
+
+            {/* Typewriter cycling question */}
+            <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '14px', fontWeight: 600, color: '#C9A84C', letterSpacing: '0.04em', whiteSpace: 'nowrap', minHeight: '20px' }}>
+              {typedText}
+              <span style={{ display: 'inline-block', width: '2px', height: '14px', background: '#C9A84C', marginLeft: '2px', verticalAlign: 'middle', animation: 'blink 0.8s step-end infinite' }} />
             </p>
           </div>
         )}
@@ -389,6 +432,14 @@ export function ChatWidget() {
       <style>{`
         @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
         @keyframes pulse { 0%, 100% { opacity: 0.6; transform: scale(1); } 50% { opacity: 1; transform: scale(1.3); } }
+        @keyframes pillPulse {
+          0%, 100% { box-shadow: 0 4px 20px rgba(201,168,76,0.15); }
+          50%       { box-shadow: 0 4px 28px rgba(201,168,76,0.38); }
+        }
+        @keyframes dotBlink {
+          0%, 100% { opacity: 1; transform: scale(1); }
+          50%       { opacity: 0.3; transform: scale(0.7); }
+        }
       `}</style>
     </>
   )
