@@ -1,113 +1,132 @@
 import { ModuleShell } from '../_shared/ModuleShell'
-import { Button } from '../../components/ui/Button'
 import { contacts } from '../../data/contacts'
 
 const tiers = [
   {
-    name: 'Presenting Partner',
     level: 'Premier',
-    features: ['Exclusive category rights', 'Premium digital + static signage throughout property', 'Dedicated activation space', 'Co-branded events programming', 'Direct audience targeting via MOA media'],
+    name: 'Presenting Partner',
     highlight: true,
+    features: ['Exclusive category rights', 'Premium digital + static signage', 'Dedicated activation space', 'Co-branded events programming', 'Direct audience targeting via MOA media'],
   },
   {
-    name: 'Associate Partner',
     level: 'Strategic',
-    features: ['Category sponsorship', 'Digital signage rotation', 'Event activation rights', 'Co-marketing opportunities'],
+    name: 'Associate Partner',
     highlight: false,
+    features: ['Category sponsorship', 'Digital signage rotation', 'Event activation rights', 'Co-marketing opportunities'],
   },
   {
-    name: 'Event Partner',
     level: 'Activation',
-    features: ['Single or multi-event activation', 'Sampling & demonstration rights', 'Social media integration', 'Brand visibility to event audiences'],
+    name: 'Event Partner',
     highlight: false,
+    features: ['Single or multi-event activation', 'Sampling & demo rights', 'Social media integration', 'Brand visibility to event audiences'],
   },
+]
+
+const activations = [
+  { title: 'Experiential Pop-Ups', desc: 'Temporary branded spaces in high-traffic corridors and atriums.' },
+  { title: 'Product Sampling', desc: 'Intercept 40M annual visitors with hands-on product trials.' },
+  { title: 'Live Competitions', desc: 'Esports, talent competitions, and branded challenges.' },
+  { title: 'Signage & Digital Media', desc: 'Premium placements across 5.6M sq ft of property.' },
 ]
 
 export default function SponsorshipModule() {
   return (
-    <ModuleShell title="Sponsorship & Partnerships" id="sponsorship">
-      <div className="max-w-5xl mx-auto px-8 py-16 space-y-20">
-        {/* Hero */}
-        <div className="text-center">
-          <h2 className="text-5xl md:text-7xl font-light text-[var(--color-moa-cream)] mb-4" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
-            Partner with<br /><em>40 Million Consumers.</em>
-          </h2>
-          <p className="text-[var(--color-moa-gray-light)] max-w-xl mx-auto text-base leading-relaxed">
-            MOA's unique combination of scale, dwell time, and demographic diversity makes it the highest-ROI brand partnership in North American retail.
-          </p>
-        </div>
+    <ModuleShell
+      title="Sponsorship &amp; Partnerships"
+      subtitle="The highest-ROI brand partnership in North American retail."
+      heroImage="https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=1400&q=80"
+    >
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 2rem 80px' }}>
 
-        {/* Audience data */}
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+        {/* Audience stats */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(200px, 1fr))', gap: '1px', background: 'rgba(201,168,76,0.12)', marginBottom: '72px' }}>
           {[
             { v: '40M', l: 'Annual Visitors' },
             { v: '$162', l: 'Avg Spend Per Visit' },
             { v: '78%', l: 'Affluent Shoppers (HHI $100k+)' },
             { v: '2.5×', l: 'International Spend Multiplier' },
           ].map((s) => (
-            <div key={s.l} className="text-center border border-[rgba(201,168,76,0.15)] p-5">
-              <div className="text-3xl font-light text-[var(--color-moa-gold)]" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>{s.v}</div>
-              <div className="text-xs tracking-wider uppercase text-[var(--color-moa-gray-light)] mt-2">{s.l}</div>
+            <div key={s.l} style={{ padding: '36px 20px', textAlign: 'center', background: '#0A0E1A' }}>
+              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3.5vw, 2.6rem)', color: '#C9A84C', fontWeight: 300, marginBottom: '8px' }}>{s.v}</div>
+              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '0.18em', textTransform: 'uppercase', color: 'rgba(248,246,242,0.4)' }}>{s.l}</div>
             </div>
           ))}
         </div>
 
         {/* Partnership tiers */}
-        <div>
-          <p className="text-[var(--color-moa-gold)] text-xs tracking-[0.35em] uppercase mb-8 text-center">Partnership Tiers</p>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-            {tiers.map((t) => (
-              <div
-                key={t.name}
-                className="border p-8 flex flex-col"
-                style={{
-                  borderColor: t.highlight ? 'var(--color-moa-gold)' : 'rgba(201,168,76,0.2)',
-                  background: t.highlight ? 'rgba(201,168,76,0.05)' : 'transparent',
-                }}
-              >
-                <div className="text-[var(--color-moa-gold)] text-xs tracking-[0.3em] uppercase mb-2">{t.level}</div>
-                <h3 className="text-[var(--color-moa-cream)] text-xl font-light mb-6" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>{t.name}</h3>
-                <ul className="space-y-3 flex-1">
-                  {t.features.map((f) => (
-                    <li key={f} className="flex items-start gap-3 text-sm text-[var(--color-moa-gray-light)]">
-                      <span className="text-[var(--color-moa-gold)] mt-0.5 text-xs">—</span>
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            ))}
-          </div>
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '0.35em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '32px' }}>
+          Partnership Tiers
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))', gap: '16px', marginBottom: '72px' }}>
+          {tiers.map((t) => (
+            <div
+              key={t.name}
+              style={{
+                padding: '36px 32px',
+                background: t.highlight ? 'rgba(201,168,76,0.07)' : '#111827',
+                border: t.highlight ? '1px solid #C9A84C' : '1px solid rgba(201,168,76,0.15)',
+                display: 'flex', flexDirection: 'column', gap: '0',
+              }}
+            >
+              {t.highlight && (
+                <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '0.25em', textTransform: 'uppercase', color: '#C9A84C', background: 'rgba(201,168,76,0.12)', padding: '5px 12px', alignSelf: 'flex-start', marginBottom: '20px' }}>
+                  Recommended
+                </div>
+              )}
+              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '0.3em', textTransform: 'uppercase', color: 'rgba(248,246,242,0.35)', marginBottom: '8px' }}>{t.level}</div>
+              <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: '22px', color: '#F8F6F2', fontWeight: 300, marginBottom: '28px' }}>{t.name}</h3>
+              <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '12px', flex: 1 }}>
+                {t.features.map((f) => (
+                  <li key={f} style={{ display: 'flex', gap: '12px', alignItems: 'flex-start' }}>
+                    <span style={{ color: '#C9A84C', fontSize: '10px', marginTop: '3px', flexShrink: 0 }}>—</span>
+                    <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: 'rgba(248,246,242,0.6)', lineHeight: 1.6 }}>{f}</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
         </div>
 
-        {/* Activation examples */}
-        <div>
-          <p className="text-[var(--color-moa-gold)] text-xs tracking-[0.35em] uppercase mb-8 text-center">Activation Possibilities</p>
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-            {[
-              { title: 'Experiential Pop-Ups', desc: 'Temporary branded retail or experience spaces in high-traffic corridors and atriums.' },
-              { title: 'Product Sampling', desc: 'Intercept 40M annual visitors with hands-on product trials in targeted zones.' },
-              { title: 'Live Competitions & Gaming', desc: 'Esports, talent competitions, and branded challenges with real-time crowd engagement.' },
-              { title: 'Signage & Digital Media', desc: 'Premium static and digital placements throughout 5.6M sq ft of property.' },
-            ].map((a) => (
-              <div key={a.title} className="flex gap-4 p-5 border border-[rgba(201,168,76,0.1)] hover:border-[rgba(201,168,76,0.3)] transition-colors">
-                <div>
-                  <h4 className="text-[var(--color-moa-cream)] text-sm font-light mb-1">{a.title}</h4>
-                  <p className="text-[var(--color-moa-gray-light)] text-sm leading-relaxed">{a.desc}</p>
-                </div>
-              </div>
-            ))}
-          </div>
+        {/* Activations */}
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '0.35em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '32px' }}>
+          Activation Possibilities
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(240px, 1fr))', gap: '1px', background: 'rgba(201,168,76,0.12)', marginBottom: '72px' }}>
+          {activations.map((a) => (
+            <div key={a.title} style={{ padding: '28px 24px', background: '#0A0E1A', transition: 'background 0.25s' }}
+              onMouseEnter={e => (e.currentTarget.style.background = '#111827')}
+              onMouseLeave={e => (e.currentTarget.style.background = '#0A0E1A')}
+            >
+              <h4 style={{ fontFamily: '"Playfair Display", serif', fontSize: '16px', color: '#F8F6F2', fontWeight: 300, marginBottom: '10px' }}>{a.title}</h4>
+              <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '13px', color: 'rgba(248,246,242,0.5)', lineHeight: 1.7 }}>{a.desc}</p>
+            </div>
+          ))}
         </div>
 
         {/* CTA */}
-        <div className="text-center">
-          <p className="text-[var(--color-moa-gray-light)] text-sm mb-2">Speak with our VP of Partnership Sales</p>
-          <p className="text-[var(--color-moa-gold)] text-sm mb-6">{contacts.partnerships.name} · {contacts.partnerships.phone}</p>
-          <a href={`mailto:${contacts.partnerships.email}`}>
-            <Button variant="gold">Start a Partnership Conversation</Button>
+        <div style={{ textAlign: 'center' }}>
+          <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '20px', color: '#F8F6F2', fontWeight: 300, marginBottom: '8px' }}>
+            {contacts.partnerships.name}
+          </p>
+          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: '#C9A84C', letterSpacing: '0.1em', marginBottom: '28px' }}>
+            {contacts.partnerships.title} · {contacts.partnerships.phone}
+          </p>
+          <a
+            href={`mailto:${contacts.partnerships.email}`}
+            style={{
+              display: 'inline-block', padding: '16px 48px',
+              background: '#C9A84C', color: '#0A0E1A',
+              fontFamily: 'Inter, sans-serif', fontSize: '11px',
+              fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase',
+              textDecoration: 'none', transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.background = '#E4C97A')}
+            onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.background = '#C9A84C')}
+          >
+            Start a Partnership Conversation
           </a>
         </div>
+
       </div>
     </ModuleShell>
   )

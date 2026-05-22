@@ -1,83 +1,103 @@
 import { ModuleShell } from '../_shared/ModuleShell'
-import { Button } from '../../components/ui/Button'
 import { contacts } from '../../data/contacts'
 
 const venues = [
   {
     name: 'Executive Center',
     location: 'Overlooks Nickelodeon Universe',
-    sqft: 'Custom',
     capacity: 'Flexible',
-    features: ['Full A/V equipment', 'Overlooks 7-acre theme park', 'Natural light', 'Catering available', 'Ideal for receptions, conferences, product demos'],
-    image: 'https://images.unsplash.com/photo-1511578314322-379afb476865?w=800&q=80',
+    sqft: 'Custom',
+    features: ['Full A/V equipment', 'Overlooks 7-acre indoor theme park', 'Natural light', 'Catering available', 'Ideal for receptions, conferences, product demos'],
+    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'Parkview Meeting & Event Center',
     location: 'Southwest Corner · 4th Floor',
-    sqft: 'Flexible',
     capacity: '200+',
-    features: ['Outdoor balcony overlooking Nickelodeon Universe', 'Perimeter ambient lighting', 'Full A/V system', 'Private restrooms', 'Customizable layout'],
-    image: 'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80',
+    sqft: 'Flexible',
+    features: ['Outdoor balcony overlooking Nickelodeon Universe', 'Ambient perimeter lighting', 'Full A/V system', 'Private restrooms', 'Customizable layout'],
+    image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'Radisson Blu',
     location: 'On-Property Hotel',
-    sqft: '26,300 sq ft',
     capacity: '1,000+',
+    sqft: '26,300 sq ft',
     features: ['2 ballrooms', '14 meeting rooms', 'Video conferencing', 'LCD projection', 'Full catering & bar'],
-    image: 'https://images.unsplash.com/photo-1519167758481-83f29c8a4c62?w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
   },
   {
     name: 'JW Marriott',
     location: 'On-Property Hotel',
-    sqft: '19,000 sq ft',
     capacity: '1,700',
-    features: ['One of largest event destinations in Twin Cities', 'Grand Ballroom for 1,700', 'Multiple breakout rooms', 'Premium AV infrastructure', 'Full-service catering'],
-    image: 'https://images.unsplash.com/photo-1583417319070-4a69db38a482?w=800&q=80',
+    sqft: '19,000 sq ft',
+    features: ['Largest event destination in Twin Cities', 'Grand Ballroom for 1,700', 'Multiple breakout rooms', 'Premium AV infrastructure', 'Full-service catering'],
+    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80',
   },
 ]
 
 export default function VenueModule() {
   return (
-    <ModuleShell title="Venue Spaces" id="venue">
-      <div className="max-w-5xl mx-auto px-8 py-16 space-y-20">
-        {/* Hero */}
-        <div className="text-center">
-          <h2 className="text-5xl md:text-7xl font-light text-[var(--color-moa-cream)] mb-4" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>
-            Venues that<br /><em>command attention.</em>
-          </h2>
-          <p className="text-[var(--color-moa-gray-light)] max-w-xl mx-auto text-base leading-relaxed">
-            MOA's on-property event spaces and connected hotels offer 45,000+ sq ft of combined meeting and event capacity in a destination unlike any other.
-          </p>
+    <ModuleShell
+      title="Venue Spaces"
+      subtitle="45,000+ sq ft of combined event capacity in a destination unlike any other."
+      heroImage="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80"
+    >
+      <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 2rem 80px' }}>
+
+        {/* Summary stats */}
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '1px', background: 'rgba(201,168,76,0.12)', marginBottom: '72px' }}>
+          {[
+            { v: '45,300+', l: 'Total Event Sq Ft' },
+            { v: '1,700', l: 'Max Ballroom Capacity' },
+            { v: '16+', l: 'Dedicated Meeting Rooms' },
+          ].map((s, i) => (
+            <div key={s.l} style={{ padding: '36px 20px', textAlign: 'center', background: '#0A0E1A', borderRight: i < 2 ? '1px solid rgba(201,168,76,0.08)' : 'none' }}>
+              <div style={{ fontFamily: '"Playfair Display", serif', fontSize: 'clamp(1.8rem, 3.5vw, 2.8rem)', color: '#C9A84C', fontWeight: 300, marginBottom: '8px' }}>{s.v}</div>
+              <div style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '0.2em', textTransform: 'uppercase', color: 'rgba(248,246,242,0.4)' }}>{s.l}</div>
+            </div>
+          ))}
         </div>
 
         {/* Venue cards */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
+        <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '10px', letterSpacing: '0.35em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '32px' }}>
+          Our Venues
+        </p>
+        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(460px, 1fr))', gap: '2px', marginBottom: '72px' }}>
           {venues.map((v) => (
-            <div key={v.name} className="border border-[rgba(201,168,76,0.15)] overflow-hidden hover:border-[rgba(201,168,76,0.4)] transition-colors duration-300 group">
-              <div className="relative h-48 overflow-hidden">
-                <img
-                  src={v.image}
-                  alt={v.name}
-                  className="video-fill object-cover transition-transform duration-700 group-hover:scale-105"
+            <div
+              key={v.name}
+              style={{ background: '#111827', border: '1px solid rgba(201,168,76,0.1)', overflow: 'hidden', transition: 'border-color 0.3s' }}
+              onMouseEnter={e => (e.currentTarget.style.borderColor = 'rgba(201,168,76,0.4)')}
+              onMouseLeave={e => (e.currentTarget.style.borderColor = 'rgba(201,168,76,0.1)')}
+            >
+              {/* Image */}
+              <div style={{ position: 'relative', height: '200px', overflow: 'hidden' }}>
+                <img src={v.image} alt={v.name} style={{ width: '100%', height: '100%', objectFit: 'cover', transition: 'transform 0.6s ease' }}
+                  onMouseEnter={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1.05)')}
+                  onMouseLeave={e => ((e.currentTarget as HTMLImageElement).style.transform = 'scale(1)')}
                   loading="lazy"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[rgba(10,14,26,0.7)] to-transparent" />
-              </div>
-              <div className="p-7">
-                <h3 className="text-[var(--color-moa-cream)] text-xl font-light mb-1" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>{v.name}</h3>
-                <p className="text-[var(--color-moa-gold)] text-xs tracking-wider mb-1">{v.location}</p>
-                <div className="flex gap-6 text-xs text-[var(--color-moa-gray-light)] mb-5">
-                  {v.sqft !== 'Custom' && v.sqft !== 'Flexible' && (
-                    <span><strong>{v.sqft}</strong> total</span>
-                  )}
-                  <span>Capacity: <strong>{v.capacity}</strong></span>
+                <div style={{ position: 'absolute', inset: 0, background: 'linear-gradient(to top, rgba(10,14,26,0.8) 0%, transparent 60%)' }} />
+                <div style={{ position: 'absolute', bottom: '16px', left: '20px' }}>
+                  <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '9px', letterSpacing: '0.2em', textTransform: 'uppercase', color: '#C9A84C', marginBottom: '4px' }}>{v.location}</p>
+                  <div style={{ display: 'flex', gap: '16px' }}>
+                    {v.sqft !== 'Custom' && v.sqft !== 'Flexible' && (
+                      <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: 'rgba(248,246,242,0.6)' }}>{v.sqft}</span>
+                    )}
+                    <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '11px', color: 'rgba(248,246,242,0.6)' }}>Up to {v.capacity}</span>
+                  </div>
                 </div>
-                <ul className="space-y-2">
+              </div>
+
+              {/* Content */}
+              <div style={{ padding: '24px 24px 28px' }}>
+                <h3 style={{ fontFamily: '"Playfair Display", serif', fontSize: '20px', color: '#F8F6F2', fontWeight: 300, marginBottom: '18px' }}>{v.name}</h3>
+                <ul style={{ listStyle: 'none', margin: 0, padding: 0, display: 'flex', flexDirection: 'column', gap: '9px' }}>
                   {v.features.map((f) => (
-                    <li key={f} className="flex items-start gap-2 text-sm text-[var(--color-moa-gray-light)]">
-                      <span className="text-[var(--color-moa-gold)] text-xs mt-0.5">—</span>
-                      {f}
+                    <li key={f} style={{ display: 'flex', gap: '10px', alignItems: 'flex-start' }}>
+                      <span style={{ color: '#C9A84C', fontSize: '10px', marginTop: '4px', flexShrink: 0 }}>—</span>
+                      <span style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(248,246,242,0.55)', lineHeight: 1.6 }}>{f}</span>
                     </li>
                   ))}
                 </ul>
@@ -86,33 +106,35 @@ export default function VenueModule() {
           ))}
         </div>
 
-        {/* Summary */}
-        <div className="bg-[rgba(201,168,76,0.04)] border border-[rgba(201,168,76,0.2)] p-10 text-center">
-          <div className="grid grid-cols-3 gap-8 mb-8">
-            {[
-              { v: '45,300+', l: 'Total Event Sq Ft' },
-              { v: '1,700', l: 'Max Ballroom Capacity' },
-              { v: '16+', l: 'Dedicated Meeting Rooms' },
-            ].map((s) => (
-              <div key={s.l}>
-                <div className="text-3xl font-light text-[var(--color-moa-gold)]" style={{ fontFamily: '"Playfair Display", Georgia, serif' }}>{s.v}</div>
-                <div className="text-xs tracking-wider uppercase text-[var(--color-moa-gray-light)] mt-1">{s.l}</div>
-              </div>
-            ))}
-          </div>
-          <p className="text-[var(--color-moa-gray-light)] text-sm leading-relaxed max-w-md mx-auto">
-            All venues are connected to MOA's ecosystem of 520+ stores, 60+ restaurants, and 40M annual visitors.
-            No other event venue offers this surrounding context.
+        {/* Context highlight */}
+        <div style={{ padding: '40px 48px', background: 'rgba(201,168,76,0.04)', border: '1px solid rgba(201,168,76,0.2)', textAlign: 'center', marginBottom: '72px' }}>
+          <p style={{ fontFamily: '"Playfair Display", serif', fontSize: '18px', color: '#F8F6F2', fontWeight: 300, lineHeight: 1.6, maxWidth: '600px', margin: '0 auto' }}>
+            All venues are connected to MOA's ecosystem of <em style={{ color: '#C9A84C' }}>520+ stores</em>, <em style={{ color: '#C9A84C' }}>60+ restaurants</em>, and <em style={{ color: '#C9A84C' }}>40M annual visitors</em>. No other event venue offers this surrounding context.
           </p>
         </div>
 
         {/* CTA */}
-        <div className="text-center">
-          <p className="text-[var(--color-moa-gray-light)] text-sm mb-6">Let's plan your event at MOA.</p>
-          <a href={`mailto:${contacts.events.email}`}>
-            <Button variant="gold">Request Venue Information</Button>
+        <div style={{ textAlign: 'center' }}>
+          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(248,246,242,0.4)', marginBottom: '28px' }}>Let's plan your event at MOA.</p>
+          <a
+            href={`mailto:${contacts.events.email}`}
+            style={{
+              display: 'inline-block', padding: '16px 48px',
+              background: '#C9A84C', color: '#0A0E1A',
+              fontFamily: 'Inter, sans-serif', fontSize: '11px',
+              fontWeight: 600, letterSpacing: '0.2em', textTransform: 'uppercase',
+              textDecoration: 'none', transition: 'background 0.2s',
+            }}
+            onMouseEnter={e => ((e.currentTarget as HTMLAnchorElement).style.background = '#E4C97A')}
+            onMouseLeave={e => ((e.currentTarget as HTMLAnchorElement).style.background = '#C9A84C')}
+          >
+            Request Venue Information
           </a>
+          <p style={{ fontFamily: 'Inter, sans-serif', fontSize: '12px', color: 'rgba(248,246,242,0.35)', marginTop: '12px' }}>
+            {contacts.events.email} · {contacts.events.phone}
+          </p>
         </div>
+
       </div>
     </ModuleShell>
   )
