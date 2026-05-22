@@ -5,11 +5,8 @@ import { ScrollProgress } from './ScrollProgress'
 import { sections } from '../../data/sections'
 
 export function DeckShell() {
-  const isMuted = useStore((s) => s.isMuted)
-  const setMuted = useStore((s) => s.setMuted)
   const activeSection = useStore((s) => s.activeSection)
-  const theme = useStore((s) => s.theme)
-  const toggleTheme = useStore((s) => s.toggleTheme)
+
 
   const scrollTo = (id: string) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' })
