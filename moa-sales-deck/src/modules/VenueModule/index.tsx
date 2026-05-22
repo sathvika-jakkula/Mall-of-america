@@ -8,7 +8,7 @@ const venues = [
     capacity: 'Flexible',
     sqft: 'Custom',
     features: ['Full A/V equipment', 'Overlooks 7-acre indoor theme park', 'Natural light', 'Catering available', 'Ideal for receptions, conferences, product demos'],
-    image: 'https://images.unsplash.com/photo-1497366216548-37526070297c?auto=format&fit=crop&w=800&q=80',
+    image: '/images/executive_center.png',
   },
   {
     name: 'Parkview Meeting & Event Center',
@@ -16,7 +16,7 @@ const venues = [
     capacity: '200+',
     sqft: 'Flexible',
     features: ['Outdoor balcony overlooking Nickelodeon Universe', 'Ambient perimeter lighting', 'Full A/V system', 'Private restrooms', 'Customizable layout'],
-    image: 'https://images.unsplash.com/photo-1431540015161-0bf868a2d407?auto=format&fit=crop&w=800&q=80',
+    image: '/images/parkview_center.png',
   },
   {
     name: 'Radisson Blu',
@@ -24,7 +24,7 @@ const venues = [
     capacity: '1,000+',
     sqft: '26,300 sq ft',
     features: ['2 ballrooms', '14 meeting rooms', 'Video conferencing', 'LCD projection', 'Full catering & bar'],
-    image: 'https://images.unsplash.com/photo-1542314831-068cd1dbfeeb?auto=format&fit=crop&w=800&q=80',
+    image: '/images/radisson_blu.png',
   },
   {
     name: 'JW Marriott',
@@ -32,7 +32,7 @@ const venues = [
     capacity: '1,700',
     sqft: '19,000 sq ft',
     features: ['Largest event destination in Twin Cities', 'Grand Ballroom for 1,700', 'Multiple breakout rooms', 'Premium AV infrastructure', 'Full-service catering'],
-    image: 'https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=800&q=80',
+    image: '/images/jw_marriott.png',
   },
 ]
 
@@ -41,7 +41,7 @@ export default function VenueModule() {
     <ModuleShell
       title="Venue Spaces"
       subtitle="45,000+ sq ft of combined event capacity in a destination unlike any other."
-      heroImage="https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?auto=format&fit=crop&w=1400&q=80"
+      heroImage="/images/venues_hero.png"
     >
       <div style={{ maxWidth: '1100px', margin: '0 auto', padding: '72px 2rem 80px' }}>
 
